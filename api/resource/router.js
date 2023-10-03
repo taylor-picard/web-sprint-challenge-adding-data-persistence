@@ -1,5 +1,13 @@
 const router = require('express').Router();
+const Resource = require('./model');
 
+router.get('/', (req, res, next)=> {
+    return Resource.getResources()
+        .then(res => {
+            res.status(200).json(res)
+        })
+        .catch(next)
+})
 
 router.use('*', (req, res)=> {
     res.status(200).json({

@@ -3,10 +3,19 @@ const Resource = require('./model');
 
 router.get('/', (req, res, next)=> {
     return Resource.getResources()
-        .then(res => {
-            res.status(200).json(res)
+        .then(result => {
+            res.status(200).json(result)
         })
         .catch(next)
+})
+
+router.post('/', (req, res, next)=> {
+    Resource.postResource(req.body)
+        .then(newResource => {
+            console.log(newResource)
+            res.status(201).json(newResource)
+        })
+        .catch(next);
 })
 
 router.use('*', (req, res)=> {

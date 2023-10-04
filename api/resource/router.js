@@ -13,7 +13,7 @@ router.post('/', (req, res, next)=> {
     Resource.postResource(req.body)
         .then(newResource => {
             console.log(newResource)
-            res.status(201).json(newResource)
+            res.status(201).json(newResource[0]);
         })
         .catch(next);
 })
